@@ -1,0 +1,12 @@
+//con nombre, versión, descripción, autores, licencia, dependencias, scripts (pretest, test, ...)
+{
+    "name": "",
+    "version": "",
+    "description": "",
+    "main": "",
+    "scripts": {
+      "test": ""
+    },
+    "author": "",
+    "license": ""
+  }
