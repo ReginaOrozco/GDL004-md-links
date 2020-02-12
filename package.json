@@ -1,12 +1,12 @@
 //con nombre, versión, descripción, autores, licencia, dependencias, scripts (pretest, test, ...)
 {
-    "name": "",
-    "version": "",
-    "description": "",
-    "main": "",
+    "name": "my-module",
+    "version": "1.0.0",
+    "description": "Módulo para verificar y dar estadísticas de enlaces rotos en un archivo .md",
+    "main": "index.js",
     "scripts": {
       "test": ""
     },
-    "author": "",
-    "license": ""
+    "author": "Regina",
+    "license": "ISC"
   }
