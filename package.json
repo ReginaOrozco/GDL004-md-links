@@ -1,12 +1,27 @@
-//con nombre, versión, descripción, autores, licencia, dependencias, scripts (pretest, test, ...)
 {
-    "name": "my-module",
-    "version": "1.0.0",
-    "description": "Módulo para verificar y dar estadísticas de enlaces rotos en un archivo .md",
-    "main": "index.js",
-    "scripts": {
-      "test": ""
-    },
-    "author": "Regina",
-    "license": "ISC"
+  "name": "gdl004-md-links",
+  "version": "1.0.0",
+  "description": "\"Librería para leer archivos .md y saber la cantidad de links que tiene, tanto rotos como buenos\"",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/reggieraccoon/GDL004-md-links.git"
+  },
+  "author": "\"Regina\"",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/reggieraccoon/GDL004-md-links/issues"
+  },
+  "homepage": "https://github.com/reggieraccoon/GDL004-md-links#readme",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^2.19.2",
+    "@typescript-eslint/parser": "^2.19.2",
+    "eslint": "^6.8.0"
   }
+}
