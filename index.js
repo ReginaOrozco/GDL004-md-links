@@ -1,21 +1,29 @@
-//Desde este archivo debes exportar una función (mdLinks)
+const fs = require('fs');
+const path = require('path');
+const filesPath = process.argv[2];
 
-const checkMd = (filePath) => (path.extname(filePath) === '.md');
+const fileValidation = () => {
+  let extension = path.extname(filesPath);
+  if (extension === '.md') {
+      console.log("El archivo es un .md");
+      readFile(filesPath);
+  } else {
+      console.error("Archivo no válido, ingresa un archivo con extensión .md")
+  }
+}
 
-const readMd = () => {
-  fs.readFile(userPath, 'utf8', (err, data) => {
-    if (err);
-    
-  });
-  return true;
-};
-readMd();
+const readFile = filesPath => {
+  fs.readFile(filesPath, 'utf8', (err, data) => {
+    if (!err) {
+      const expression = /(https?:\/\/[^\s]+)/g;
+      const regex = new RegExp(expression);
+       const links = data.match(regex);
+       mapLoop(links);
 
-const findLinksMd = () => {
-  fs.readFile(userPath, 'utf8', (err, data) => {
-    allLinks = data.match(expectLink);
-    console.log(allLinks);
-  });
-  return true
-};
-findLinksMd();
+      return links;
+
+    } else {
+      console.error(error.message);
+    }
+  })
+}

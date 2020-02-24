@@ -1,7 +1,7 @@
 {
   "name": "gdl004-md-links",
   "version": "1.0.0",
-  "description": "\"Librería para leer archivos .md y saber la cantidad de links que tiene, tanto rotos como buenos\"",
+  "description": "Librería para leer archivos .md y saber la cantidad de links que tiene, tanto rotos como buenos",
   "main": "index.js",
   "directories": {
     "test": "test"
@@ -13,7 +13,7 @@
     "type": "git",
     "url": "git+https://github.com/reggieraccoon/GDL004-md-links.git"
   },
-  "author": "\"Regina\"",
+  "author": "Regina",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/reggieraccoon/GDL004-md-links/issues"
