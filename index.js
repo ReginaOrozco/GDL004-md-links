@@ -18,7 +18,7 @@ const readFile = filesPath => {
       const expression = /(https?:\/\/[^\s]+)/g;
       const regex = new RegExp(expression);
        const links = data.match(regex);
-       mapLoop(links);
+       validLinks(links);
 
       return links;
 
