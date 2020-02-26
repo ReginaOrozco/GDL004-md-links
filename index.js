@@ -22,8 +22,13 @@ console.log(fileValidation(archivoMD));
       console.log(err);
 
     } else {
-      const regex = new RegExp(/https?:\/\/[\w\.\-]+\.\w{2,5}[^\s\)]+/g);
-       const links = data.match(regex);
+      const findLinks = new RegExp(/https?:\/\/[\w\.\-]+\.\w{2,5}[^\s\)]+/g);
+       const links = data.match(findLinks);
        console.log(links);
+
     }
   });
+
+  const validateLinks = links => {
+    for (let i = 0; i < links.length; i++);
+  }
