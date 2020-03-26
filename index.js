@@ -18,7 +18,7 @@ console.log(fileValidation(archivoMD));
 
 
   const readMD = fs.readFile(archivoMD, "utf8", (err, data) => {
-    if (err) {
+    if (fileValidation(archivoMD) === false) {
       console.log(err);
 
     } else {
@@ -28,7 +28,3 @@ console.log(fileValidation(archivoMD));
 
     }
   });
-
-  const validateLinks = links => {
-    for (let i = 0; i < links.length; i++);
-  }
