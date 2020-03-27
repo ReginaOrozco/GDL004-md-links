@@ -20,7 +20,7 @@ const readMD = (archivoMD) => {
             let arrayLinks = []
             const findLinks = new RegExp(/https?:\/\/[\w\.\-]+\.\w{2,5}[^\s\)]+/g);
             const links = data.match(findLinks);
-            //return(links);
+            return(links);
             for(let i = 0; i < links.length; i++){
               const textBreak = findLinks.exec(links[i])
               console.log(textBreak);
@@ -42,8 +42,7 @@ const readMD = (archivoMD) => {
         .catch((err) => {
             return(err);
         });
-    };
-};
+    };;
 
 /*const mdLinks = (path, options) => {
 	const array = [{
