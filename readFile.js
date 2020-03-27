@@ -3,7 +3,7 @@ const path = require("path");
 const process = require("process");
 const archivoMD  = process.argv[2];
 const { validateLinks } = require("./validateLinks.js");
-//const { commands } = require("./cli.js");
+const { commands } = require("./cli.js");
 
 const fileValidation = () => {
     let extension = path.extname(archivoMD);
@@ -17,10 +17,21 @@ const fileValidation = () => {
 const readMD = (archivoMD) => {
     return fs.promise.readFile(archivoMD, "utf8")
         .then((data) => {
+            let arrayLinks = []
             const findLinks = new RegExp(/https?:\/\/[\w\.\-]+\.\w{2,5}[^\s\)]+/g);
             const links = data.match(findLinks);
-            let arrayLinks = []
             return(links);
+            for(let i = 0; i < links.length; i++){
+              const textBreak = findLinks.exec(links[i])
+              console.log(textBreak);
+              let objLink = {
+                text: textBreak[1],
+                href: textBreak[2],
+                file: archivoMD
+              }
+              arrayLinks.push(objLink)
+            }
+          return(arrayLinks);
         })
         .then((links) => {
           validateLinks(links).then((linksValidated) => {
@@ -31,8 +42,7 @@ const readMD = (archivoMD) => {
         .catch((err) => {
             return(err);
         });
-    };
-};
+    };;
 
 /*const mdLinks = (path, options) => {
 	const array = [{
