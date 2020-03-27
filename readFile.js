@@ -15,23 +15,25 @@ const fileValidation = () => {
 };
 
 const readMD = (archivoMD) => {
-    return fs.promise.readFile(archivoMD, "utf8")
+    return fs.promises.readFile(archivoMD, "utf8")
         .then((data) => {
             let arrayLinks = []
             const findLinks = new RegExp(/https?:\/\/[\w\.\-]+\.\w{2,5}[^\s\)]+/g);
             const links = data.match(findLinks);
+            console.log(links);
             return(links);
-            for(let i = 0; i < links.length; i++){
-              const textBreak = findLinks.exec(links[i])
-              console.log(textBreak);
+
+            /*for(let i = 0; i < links.length; i++){
+              const matchLinks = findLinks.exec(links[i])
+
               let objLink = {
-                text: textBreak[1],
-                href: textBreak[2],
-                file: archivoMD
+                text: ,
+                href: ,
               }
               arrayLinks.push(objLink)
             }
-          return(arrayLinks);
+          return(arrayLinks);*/
+
         })
         .then((links) => {
           validateLinks(links).then((linksValidated) => {
@@ -64,3 +66,4 @@ const readMD = (archivoMD) => {
 //}
 
 //mdLinks()
+readMD('pruebaDeLinks.md')
