@@ -1,7 +1,15 @@
-const mdlinks = require('./readFile.js')
-const path = process.argv[2];
+const commands = require('./readFile.js')
+const path = process.argv[3];
 
-const options = {
-    validate: process.argv[3],
-    stats: process.argv[4],
+module.exports.commands = () => {
+  const options = {
+      validate: false,
+      stats: false,
+  };
+
+  if(process.argv.indexOf('--validate') > -1){
+    options.validate = true;
+  } else if (process.argv.indexOf('stats') > -1){
+    options.stats = true;
+  }
 };
