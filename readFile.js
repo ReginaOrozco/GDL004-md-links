@@ -15,40 +15,41 @@ const fileValidation = () => {
 };
 
 const readFilePromise = (mdFile) => {
-  return new Promise( (resolve, reject)=> {
+  return new Promise ((resolve, reject) => {
     fs.readFile(mdFile, 'utf8', (err, data) => {
       if(err) {
         reject(err);
       }
-      const findLinks = new RegExp(/https?:\/\/[\w\.\-]+\.\w{2,5}[^\s\)]+/g);
+      const findLinks = new RegExp(/\[(.*)\]\((https?:\/\/[\w\.\-]+\.\w{2,5}[^\s\)]+)\)/g);
         const links = data.match(findLinks);
         let arrayLinks = []
         //return(links);
 
         for(let i = 0; i < links.length; i++){
-          const exec = findLinks.exec(links[i])
-          console.log(exec);
-
-          let objLink = {
-            text: exec[2],
-            href: exec[1],
+          let regExpData = findLinks.exec(links[i]);
+          if(regExpData){
+            let objLink = {
+              text: regExpData[1],
+              href: regExpData[2],
+            }
+            arrayLinks.push(objLink)
           }
-          arrayLinks.push(objLink)
         }
+
         resolve(arrayLinks);
     })
   })
 }
 
-readFilePromise('./README.md').then((res)=> {
+readFilePromise('./pruebaDeLinks.md').then((res)=> {
   console.log(res);
 
 })
 
-/*const readFilePromise.then((data) => {
-  if(options.validate === true && options.stats === true){
-    return links;
-  } else {
-    resolve(data)
-  }
-})*/
+return new Promise ((resolve, reject) => {
+    if(options.validate === true && options.stats === true){
+      return links;
+    } else {
+      reject(err)
+    }
+  });
