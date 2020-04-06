@@ -1,12 +1,12 @@
 const fs = require("fs");
 const path = require("path");
 const process = require("process");
-const archivoMD  = process.argv[2];
+const mdFile  = process.argv[2];
 const { validateLinks } = require("./validateLinks.js");
 const { commands } = require("./cli.js");
 
 const fileValidation = () => {
-    let extension = path.extname(archivoMD);
+    let extension = path.extname(mdFile);
     if (extension === ".md") {
         return("Este es un archivo extensión " + extension);
     } else {
@@ -14,53 +14,44 @@ const fileValidation = () => {
     }
 };
 
-const readMD = (archivoMD) => {
-    return fs.promise.readFile(archivoMD, "utf8")
-        .then((data) => {
-            let arrayLinks = []
-            const findLinks = new RegExp(/https?:\/\/[\w\.\-]+\.\w{2,5}[^\s\)]+/g);
-            const links = data.match(findLinks);
-            return(links);
-            for(let i = 0; i < links.length; i++){
-              const textBreak = findLinks.exec(links[i])
-              console.log(textBreak);
-              let objLink = {
-                text: textBreak[1],
-                href: textBreak[2],
-                file: archivoMD
-              }
-              arrayLinks.push(objLink)
+const readFilePromise = (mdFile) => {
+  return new Promise ((resolve, reject) => {
+    fs.readFile(mdFile, 'utf8', (err, data) => {
+      if(err) {
+        reject(err);
+      }
+      const findLinks = new RegExp(/\[(.*)\]\((https?:\/\/[\w\.\-]+\.\w{2,5}[^\s\)]+)\)/g);
+        const links = data.match(findLinks);
+        let arrayLinks = []
+        //return(links);
+
+        for(let i = 0; i < links.length; i++){
+          let regExpData = findLinks.exec(links[i]);
+          if(regExpData){
+            let objLink = {
+              text: regExpData[1],
+              href: regExpData[2],
             }
-          return(arrayLinks);
-        })
-        .then((links) => {
-          validateLinks(links).then((linksValidated) => {
-            console.log(linksValidated);
-          })
+            arrayLinks.push(objLink)
+          }
+        }
 
-        })
-        .catch((err) => {
-            return(err);
-        });
-    };;
+        resolve(arrayLinks);
+    })
+  })
+}
 
-/*const mdLinks = (path, options) => {
-	const array = [{
-		href: "https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Objetos_globales/Promise",
-		text:"Developer Mozilla",
-	},
-	{
-		href: "https://githoub.com/Laboratoria/GDL004-md-links",
-		text:"Githoub",
-	}]
-		validateLinks(array).then((res)=> {
-      console.log("mi respuesta",res);
-        })
+readFilePromise('./pruebaDeLinks.md').then((res)=> {
+  console.log(res);
 
-/*  const promise = new Promise((resolve, reject) => {
-		validateLinks(array)
-	});
-	return promise*/
-//}
+})
 
-//mdLinks()
+return new Promise ((resolve, reject) => {
+    if(options.validate === true && options.stats === true){
+      return links;
+    } else {
+      reject(err)
+    }
+  });
+
+asdfasdfsadf  asdf
