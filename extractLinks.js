@@ -1,8 +1,8 @@
 const fs = require("fs");
 
-const readFilePromise = (mdFile) => { //esta función debe de recibir siempre una ruta de un archivo md
+const readFilePromise = (path) => { //esta función debe de recibir siempre una ruta de un archivo md
     return new Promise ((resolve, reject) => {
-      fs.readFile(mdFile, "utf8", (err, data) => {
+      fs.readFile(path, "utf8", (err, data) => {
         if(err) {
           reject(err);
         }
@@ -17,7 +17,7 @@ const readFilePromise = (mdFile) => { //esta función debe de recibir siempre un
               let objLink = {
                 text: regExpData[1],
                 href: regExpData[2],
-                file: mdFile
+                file: path
               }
               arrayLinks.push(objLink)
             }
