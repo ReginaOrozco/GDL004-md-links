@@ -1,18 +1,31 @@
-const fetch = require("node-fetch")
+module.exports.validateLinks = (urls) => {
+  return new Promise((resolve, reject) => {
+      let response = []
+      let i = 1
+      for (let link of urls){
+      response.push(fetch(link))
+  }
 
-module.exports.validateLinks = (arrayObjLinks) => {
-    const arrayPromises = arrayObjLinks.map((item) => {
-      return new Promise((resolve, reject) => {
-          fetch(item.href).then((res) => {
-            item.status = res.status
-            resolve(item)
+      Promise.allSettled(response).then((res)=>{
+          const newArray = res.map((item,index)=>{
+              if (!item.value) {
+                  urls[index].status = 400
+                  urls[index].statusText = 'Fail'
+              } else {
+                  urls[index].status = item.value.status
+                  urls[index].statusText = item.value.statusText
+              }
 
-          })	.catch(( err ) => {
-              resolve(item)
+              return urls[index];
+
           })
-        })
+
+          resolve(newArray);
+
+
+      }).catch(err => {
+          reject(err);
+
       })
-    return Promise.all(arrayPromises)
-
-
-};
+  })
+}
