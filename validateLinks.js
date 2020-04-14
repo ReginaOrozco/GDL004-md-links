@@ -1,31 +1,11 @@
-module.exports.validateLinks = (urls) => {
-  return new Promise((resolve, reject) => {
-      let response = []
-      let i = 1
-      for (let link of urls){
-      response.push(fetch(link))
-  }
+/**
+ * ¿Qué hace la función?
+ * @param parametro ¿Cuál es el parámetro?
+ * @returns ¿Qué retorna la función?
+ */
 
-      Promise.allSettled(response).then((res)=>{
-          const newArray = res.map((item,index)=>{
-              if (!item.value) {
-                  urls[index].status = 400
-                  urls[index].statusText = "Fail"
-              } else {
-                  urls[index].status = item.value.status
-                  urls[index].statusText = item.value.statusText
-              }
+ module.exports.validateLinks = () => {
+   return new Promise ((resolve, reject) => {
 
-              return urls[index];
-
-          })
-
-          resolve(newArray);
-
-
-      }).catch(err => {
-          reject(err);
-
-      })
-  })
-}
+   })
+ }
