@@ -3,14 +3,25 @@ const { readFilePromise } = require("./extractLinks.js");
 
 module.exports.mdLinks = (path, options) => {
   return new Promise((resolve, reject) => {
-    //Aquí debe de ir un if, para que en caso de que el path sea correcto
-    //Los comandos ingresados (stats y/validate) se puedan leer
     fileValidation(path)
     .then((res) => {
-      return readFilePromise(res, path)
+      if(res) {
+        return readFilePromise(path)
+      }
     })
     .then(data => {
-      resolve(data)
+      //Aquí debe de ir un if, para que en caso de que el path sea correcto
+      if(options.validate && options.stats){
+        //Aquí vamos a validar y contar los links
+       } else if(options.validate){
+        //Aquí vamos a validar los links
+      } else if(options.stats){
+        //Aquí vamos a contar los links
+      } else {
+        //No valida ni cuenta solo devuelve la data
+        resolve(data)
+      }
+
     })
     .catch(reject)
   })

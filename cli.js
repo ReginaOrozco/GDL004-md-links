@@ -1,5 +1,5 @@
 const { mdLinks } = require("./index.js");
-const path = process.argv[3];
+const path = process.argv[2];
 
 const options = {
       validate: false,
