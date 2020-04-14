@@ -1,6 +1,11 @@
 const fs = require("fs");
 
-const readFilePromise = (path) => { //esta función debe de recibir siempre una ruta de un archivo md
+/**
+ * Lee el archivo en la ruta `mdFilePath` y extrae los links de dicho archivo
+ * @param mdFilePath [String] Ruta a archivo en formato MD
+ * @returns Promesa que resuelve a un array de objetos de links
+ */
+const extractLinks = (path) => { //Esta función debe de recibir siempre una ruta de un archivo md
     return new Promise ((resolve, reject) => {
       fs.readFile(path, "utf8", (err, data) => {
         if(err) {
@@ -28,4 +33,4 @@ const readFilePromise = (path) => { //esta función debe de recibir siempre una 
     })
   }
 
-module.exports.readFilePromise = readFilePromise
+module.exports.extractLinks = extractLinks
