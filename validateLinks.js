@@ -10,7 +10,7 @@ module.exports.validateLinks = (urls) => {
           const newArray = res.map((item,index)=>{
               if (!item.value) {
                   urls[index].status = 400
-                  urls[index].statusText = 'Fail'
+                  urls[index].statusText = "Fail"
               } else {
                   urls[index].status = item.value.status
                   urls[index].statusText = item.value.statusText
