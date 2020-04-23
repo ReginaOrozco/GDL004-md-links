@@ -12,17 +12,22 @@ module.exports.mdLinks = (path, options) => {
     }
 
     extractLinks(path)
-    .then(data => {
-      //Aquí debe de ir un if, para que en caso de que el path sea correcto
+    .then(linkObj => {
       if(options.validate && options.stats){
         //Aquí vamos a validar y contar los links
-       } else if(options.validate){
-        validateLinks(data);
+       } else if(options.validate === true) {
+        validateLinks(linkObj).then(response => {
+          //resolve(response)
+          setTimeout(() => {
+            console.log(response)
+          },5000);
+
+        })
       } else if(options.stats){
         //Aquí vamos a contar los links
       } else {
         //No valida ni cuenta solo devuelve la data
-        resolve(data)
+        resolve(linkObj)
       }
 
     })
