@@ -12,10 +12,13 @@
          fetch(linkObj.href)
          .then((result) => {
             linkObj.status = result.ok;
+
          })
          .catch((err) => {
           linkObj.status = err.code
+
          });
         });
+        resolve(links)
    })
  }

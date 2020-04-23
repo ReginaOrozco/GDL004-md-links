@@ -21,8 +21,8 @@ const extractLinks = (path) => { //Esta función debe de recibir siempre una rut
             let regExpData = findLinks.exec(links[i]);
             if(regExpData){
               let objLink = {
-                text: regExpData[1],
                 href: regExpData[2],
+                text: regExpData[1],
                 file: path
               }
               arrayLinks.push(objLink)
