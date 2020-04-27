@@ -8,17 +8,39 @@
 
  module.exports.validateLinks = (links) => {
    return new Promise ((resolve, reject) => {
-      links.forEach(linkObj => {
-         fetch(linkObj.href)
-         .then((result) => {
-            linkObj.status = result.ok;
+      let linksWithStatus = [];
 
+      const promiseArray = links.map(linkObj => {
+
+          return new Promise((resolve) => {
+            fetch(linkObj.href)
+            .then((result) => {
+              resolve(result)
+            })
+            .catch((err) => {
+              resolve(err)
+            })
+          } );
+         });
+
+         Promise.all(promiseArray)
+         .then((result) => {
+            result.forEach((response, i) => {
+              const auxLink = {
+                href: links[i].href,
+                text: links[i].text,
+                file: links[i].file,
+                status: response.ok
+              }
+              linksWithStatus.push(auxLink)
+            })
+
+            resolve(linksWithStatus)
          })
          .catch((err) => {
-          linkObj.status = err.code
-
-         });
+           reject(err)
+         })
         });
-        resolve(links)
-   })
+        resolve(linksWithStatus)
+
  }
