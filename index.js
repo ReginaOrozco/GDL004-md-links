@@ -18,9 +18,8 @@ module.exports.mdLinks = (path, options) => {
        } else if(options.validate === true) {
         validateLinks(linkObj).then(response => {
           //resolve(response)
-          setTimeout(() => {
-            console.log(response)
-          },5000);
+          console.log(response)
+
 
         })
       } else if(options.stats){
