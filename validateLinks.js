@@ -27,10 +27,11 @@
          .then((result) => {
             result.forEach((response, i) => {
               const auxLink = {
-                href: links[i].href,
-                text: links[i].text,
                 file: links[i].file,
-                status: response.ok
+                url: links[i].href,
+                statusText: response.statusText,
+                status: response.status,
+                text: links[i].text
               }
               linksWithStatus.push(auxLink)
             })
