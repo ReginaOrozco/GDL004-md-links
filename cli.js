@@ -13,7 +13,7 @@ const options = {
   };
 
 
-  mdLinks(path, options).then((data)=> {
+ mdLinks(path, options).then((data)=> {
     console.log(data);
   }).catch((err)=> {
     console.log(err);
