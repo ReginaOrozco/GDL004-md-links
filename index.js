@@ -1,7 +1,7 @@
 const { fileValidation } = require("./fileValidation.js");
 const { extractLinks } = require("./extractLinks.js");
 const { validateLinks } = require("./validateLinks.js");
-const { getOkLinks, getBrokenLinks } = require("./stats.js")
+const { getOkLinks, getBrokenLinks, getUniqueLinks, getRepeatedLinks} = require("./stats.js")
 
 module.exports.mdLinks = (path, options) => {
   return new Promise((resolve, reject) => {
@@ -21,10 +21,10 @@ module.exports.mdLinks = (path, options) => {
         })
       } else if(options.stats){
         validateLinks(linkObj).then(response => {
-         // console.log("El número total de links es " + getOkLinks.length(response))
+          console.log("El número total de links es " + linkObj.length)
           console.log("El número de links ok es " + getOkLinks(response))
           console.log("El número de links rotos es " + getBrokenLinks(response))
-         // console.log("El número de links únicos es " + getUniqueLinks(response))
+          //console.log("El número de links únicos es " + getUniqueLinks(response))
           //console.log("El número de links repetidos es " + getRepeatedLinks(response))
         })
       } else {
@@ -38,4 +38,3 @@ module.exports.mdLinks = (path, options) => {
     })
   })
 }
-
